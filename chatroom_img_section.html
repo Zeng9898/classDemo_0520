@@ -121,7 +121,7 @@
             addToConversationHistory('user', message);
             displayMessage(message, 'user');
 
-            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=輸入自己的api key', {
+            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCmjCZE36UVTedFMx0Pmj2z4P8XEOUVc6w', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -192,10 +192,10 @@
                 // 檢查scene是否包含"宿舍"
                 if (scene.includes("宿舍")) {
                     document.getElementById('sceneImage').innerHTML = '<img src="./img/dorm.jpeg" alt="Dorm" style="width:500px;">';
-                } else if(scene.includes("聚會")){
-                    document.getElementById('sceneImage').innerHTML = '<img src="./img/party.jpeg" alt="Dorm" style="width:500px;">';
-                } else if(scene.includes("圖書館")){
-                    document.getElementById('sceneImage').innerHTML = '<img src="./img/library.jpeg" alt="Dorm" style="width:500px;">';
+                } else if(需補上){
+                    //需補上
+                } else if(需補上){
+                    //需補上
                 }
                 else {
                     // 如果不包含"宿舍"，可以在這裡處理其他情況或者不進行任何操作
