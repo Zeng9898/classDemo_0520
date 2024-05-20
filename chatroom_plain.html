@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Chatroom with Gemini API</title>
+</head>
+
+<body>
+    <h1>Chatroom</h1>
+    <form id="messageForm">
+        <input type="text" id="messageInput" placeholder="Type your message here..." required>
+        <button type="submit">Send</button>
+    </form>
+    <div id="messages"></div>
+    <script>
+        var conversationHistory = [];
+
+        document.getElementById('messageForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var message = document.getElementById('messageInput').value;
+
+            addToConversationHistory('user', message);
+            displayMessage(message, 'user');
+            
+            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCmjCZE36UVTedFMx0Pmj2z4P8XEOUVc6w', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "contents": conversationHistory
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(conversationHistory)
+                var responseText = data.candidates[0].content.parts[0].text;
+                addToConversationHistory('model', responseText);
+                displayMessage(responseText, 'bot');
+                
+            })
+            .catch(error => console.error('Error:', error));
+
+            document.getElementById('messageInput').value = '';
+        });
+
+        function addToConversationHistory(role, text) {
+            conversationHistory.push({
+                "role": role,
+                "parts": [{ "text": text }]
+            });
+        }
+
+        function displayMessage(message, sender) {
+            var messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            document.getElementById('messages').appendChild(messageElement);
+        }
+    </script>
+</body>
+</html>
+
+</body>
+
+</html>
