@@ -11,10 +11,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #333; /* Dark background */
+            color: #ccc; /* Light text */
         }
 
         h1 {
             text-align: center;
+            color: #fff; /* White text for headings */
         }
 
         #messageForm {
@@ -26,7 +29,9 @@
         #messageInput {
             width: 70%;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #555; /* Darker borders */
+            background-color: #222; /* Dark input fields */
+            color: #ddd; /* Light text */
             border-radius: 5px;
             outline: none;
         }
@@ -36,7 +41,7 @@
         }
 
         #messageInput::placeholder {
-            color: #999;
+            color: #777; /* Darker placeholder */
         }
 
         #messageInput:focus::placeholder {
@@ -45,7 +50,7 @@
 
         #sendMessageBtn {
             padding: 10px 20px;
-            background-color: dodgerblue;
+            background-color: #555; /* Darker button */
             color: white;
             border: none;
             border-radius: 5px;
@@ -54,28 +59,30 @@
         }
 
         #sendMessageBtn:hover {
-            background-color: #007bff;
+            background-color: #777; /* Lighter on hover */
         }
 
         #messages {
             padding: 0 20px;
             overflow-y: scroll;
             max-height: 300px;
+            background-color: #222; /* Dark background for messages */
         }
 
         .message {
             margin-bottom: 10px;
             padding: 10px;
             border-radius: 5px;
+            color: #ccc; /* Light text for messages */
         }
 
         .userMessage {
-            background-color: #f0f0f0;
+            background-color: #444; /* Darker user message */
             text-align: right;
         }
 
         .botMessage {
-            background-color: #d4edda;
+            background-color: #555; /* Darker bot message */
             text-align: left;
         }
     </style>
@@ -84,7 +91,7 @@
 <body>
     <h1>Chatroom</h1>
     <form id="messageForm">
-        <textarea id="messageInput" placeholder="Type your message here..." required></textarea>
+        <input type="text" id="messageInput" placeholder="Type your message here..." required>
         <button id="sendMessageBtn" type="submit">Send</button>
     </form>
     <div id="messages"></div>
@@ -98,7 +105,7 @@
             addToConversationHistory('user', message);
             displayMessage(message, 'user');
 
-            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=使用自己的 API key', {
+            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCmjCZE36UVTedFMx0Pmj2z4P8XEOUVc6w', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
